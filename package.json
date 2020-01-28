@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "run:prod":"node index.js",
-    "run:dev":"nodemon index.js"
+    "run:prod": "node index.js",
+    "run:dev": "nodemon index.js"
   },
   "author": "Lucas Mazel & Ilona Pradel",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security"
   }
 }
