@@ -1,0 +1,16 @@
+{
+  "name": "miallergie-web-back",
+  "version": "1.0.0",
+  "description": "Server express pour l'affichange de l'application miallergie sur navigateur",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run:prod":"node index.js",
+    "run:dev":"nodemon index.js"
+  },
+  "author": "Lucas Mazel & Ilona Pradel",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
