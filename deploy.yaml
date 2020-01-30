@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: miam-dev
+---
+# nodejs deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    name: app-miam-web
+    app: miam
+  name: app-miam-web
+  namespace: miam-dev
+spec:
+  selector:
+    matchLabels:
+      app:  app-miam-web
+  template:
+    metadata:
+      labels:
+        app:  app-miam-web
+    spec:
+      containers:
+        - name: app-miam-web
+          imagePullPolicy: Never
+          image: miallergie-web-back:V0
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: miam-web-back-storage
+              mountPath: /usr/src/app/www/
+      volumes:
+        - name: miam-web-back-storage
+          hostPath:
+            path: /k8s/storages/miam-web-back/
+            type: Directory
+---
+#service
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    name: app-miam-web
+    app: miam
+  name: app-miam-web
+  namespace: miam-dev
+spec:
+  selector:
+    app: app-miam-web
+  type: NodePort
+  ports:
+    - name: http-port
+      port: 80
+      targetPort: 80
+      nodePort: 30100
